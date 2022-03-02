@@ -1,0 +1,628 @@
+/* 
+==============================================
+CONTENT:	Project Name Here
+AUTHOR:		Your Name Here
+==============================================
+
+TABLE OF CONTENTS:
+
+0. Reset
+1. Main Layout
+2. Content
+
+==============================================
+*/
+
+/* 0. Reset ================================= */
+
+/* 
+If you want to add partials, use Sass Modules via @use:
+@use 'variables';
+
+Usage: partial-name.variable/mixin/function-name:
+background: variables.$primary-color;
+*/
+
+@use 'reset';
+@use 'mixins';
+
+/* 1. Main Layout ================================= */
+// font-family: 'Noto Sans', sans-serif;
+// font-family: 'Pacifico', cursive;
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background: rgb(255, 255, 255);
+}
+
+/* 2. Content ================================= */
+
+.main__header{
+
+	position: relative;
+	
+	.hamburger{
+		position: absolute;
+		right: 22px;
+		top: 15px;
+		display: flex;
+		flex-direction: column;
+		transform: translate(50% , 0);
+		transition: all 500ms ease-in-out;
+		div{
+			border: 1px solid white;
+			width: 25px ;
+			margin: 3px;
+		}
+
+		@include mixins.bp-large{
+			display: none;
+		}
+	}
+
+	.hamburger-close{
+		width: 30px;
+		position: absolute;
+		z-index: 30;
+		top: 0px;
+		right: 10px;
+	}
+
+	.hamburger.show{
+		z-index: 10;
+		right: 1px;
+		transform: translate(0 , 0);
+
+		div{
+			opacity: 0;
+		}
+	}
+
+	.main__header--logo{
+		position: absolute;
+		width: 80px;
+		top: 30px;
+		left: 43%;
+		@include mixins.bp-large{
+			position: fixed;
+			top:10px;
+			left:35px ;
+			z-index: 9;
+		}
+
+		@include mixins.bp-medium{
+			left: 47%;
+		}
+	}
+
+	a{
+		font-size: 13px;
+	}
+
+	.show{
+			display: block;
+			position: absolute;
+			background-color: #f4c146;
+			right: 1px;
+			width: 80%;
+			height: 80vh;
+			z-index: 20;
+			top: 0px;
+	}
+
+	.main__nav{
+		display: none;
+		margin-top: 40px;
+
+		@include mixins.bp-large{
+			display: block;
+			position: fixed;
+			right: 200px;
+			z-index: 10;
+			margin-top: 15px;
+		}
+
+		.main__nav--list{
+			display: flex;
+		}
+
+		.main__nav--list.show{
+			flex-direction: column;
+			padding-right: 80px;
+
+			a{
+				color: black;
+			}
+			a:hover{
+				color: #497469;
+			}
+
+
+			
+		}
+
+		li{
+			font-size: 16px;
+			font-family: 'Noto Sans', sans-serif;
+			margin: 5px 50px 20px 50px;
+			text-transform: uppercase;
+		}
+
+		a{
+			text-decoration: none;
+			color: white
+		}
+
+		a:hover{
+			color: #497469;
+		}
+	}
+
+	.main__header--button{
+		position: absolute;
+		font-family:'Noto Sans', sans-serif;
+		color: white;
+		background-color: #497469;
+		padding: 15px 20px;
+		border: none;
+		text-transform: uppercase;
+
+		@include mixins.bp-large{
+			right: 35px;
+			position: fixed;
+			z-index: 9;
+		}
+	}
+
+	
+}
+
+.main__hero{
+	height: 580px;
+	display: flex;
+	flex-direction: column;
+	background-image: url(/src/img/header_img.jpg);
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	z-index: -1;
+
+	@include mixins.bp-large{
+		height: 1300px;
+	}
+
+	h1{
+		margin-top: 220px;
+		justify-self: center;
+		align-self: center;
+		font-size: 43px;
+		font-family: 'Pacifico', cursive;
+		color: white;	
+		transform: skew(-13deg, -13deg);
+
+		@include mixins.bp-large{
+			font-size: 176px;
+			margin-top: 500px;
+			margin-bottom: 20px;
+		}
+	}
+
+	h2{
+		
+		font-size: 20px;
+		font-family: 'Noto Sans', sans-serif;
+		font-weight: 700;
+		color: white;
+		justify-self: center;
+		align-self: center;
+		margin: 20px 90px;
+		line-height: 30px;
+		text-align: center;
+		text-transform: uppercase;
+
+		@include mixins.bp-large{
+			margin-top: 30px;
+			font-size: 26px;
+		}
+	}
+
+	h3{
+		
+		font-size: 16px;
+		font-family: 'Noto Sans', sans-serif;
+		font-weight: 400;
+		color: white;
+		justify-self: center;
+		align-self: center;
+
+		@include mixins.bp-large{
+			font-size: 20px;
+		}
+	}
+
+	
+}
+
+.social-chicklets{
+	
+	display: none;
+
+	img{
+		width: 30px;
+	}
+
+	@include mixins.bp-large{
+		width: 30px;
+		display: block;
+		position: fixed;
+		right: 35px;
+		top:33%;
+		z-index: 20;
+		
+	}
+} 
+
+.main__story{
+	background-color:#f4c146;
+	position: relative;
+	height: 525px;
+	@include mixins.bp-large{
+		height: 1120px;
+	}
+	.main__story--copy{
+		position: absolute;
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		width: 300px;
+		bottom: 10px;
+		right: 20px;
+		z-index: 2;
+
+		@include mixins.bp-large{
+			width: 828px;
+			bottom: 30%;
+			right: 15%;
+		}
+		
+
+		h4{
+			font-family:'Pacifico', cursive; 
+			font-size: 25px;
+			margin: 30px 50px;
+			color: #497469;
+			transform: skew(-13deg, -13deg);
+		}
+
+		.main__story--content{
+			margin-bottom: 40px;
+			height: 300px;
+
+			@include mixins.bp-large{
+				display: flex;
+				align-items: center;
+			}
+
+			p{
+				font-family:'Noto Sans', sans-serif;
+				color: #497469;
+				font-size: 13px;
+				font-weight: 700;
+				text-align: center;
+				line-height: 20px;
+				margin: 10px 35px 30px 35px;
+				@include mixins.bp-large{
+					font-size: 16px;
+					width: 50%;
+					text-align: left;
+					margin-right: 50px;
+					margin: 0px 0px 0px 0px;
+					padding: 50px;
+					line-height: 30px;
+					border-right: 2px solid #497469;
+				}
+			}
+
+			.menu__button{
+				background-color: white;
+				border: 1px solid #497469;
+				padding: 10px 40px;
+				color: #497469;
+				transition: 500ms ease-in-out;
+				@include mixins.bp-large{
+					margin: 100px;
+				}
+			}
+			
+			.menu__button:hover{
+				background-color: #497469;
+				color: white;
+				
+			}
+		}
+	}
+
+	.main__story--behind-content{
+		width: 300px;
+		border: 10px solid white;
+		position: absolute;
+		z-index: 1;
+		top: 10px;
+		left: 20px;
+
+		@include mixins.bp-large{
+			width:576px; 
+			top: 160px;
+			left: 110px;
+		}
+	}
+	
+}
+
+.main__gallery{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+
+	img{
+		width: 40%;
+		margin: 20px;
+		@include mixins.bp-large{
+			width: 20%;
+		}
+
+	}
+}
+
+.main__catering{
+	background-image: url(/src/img/catering_img.jpg);
+	background-attachment: fixed;
+	height: 570px;
+	background-position: center;
+	background-size: cover;
+	position: relative;
+
+	@include mixins.bp-large{
+		display: grid;
+		grid-template-columns: 30% 40% 30%;
+		grid-template-rows: 50px 100px 50% 100px 50px;
+	}
+
+	@include mixins.bp-medium{
+		display: grid;
+		grid-template-columns: 30% 40% 30%;
+		grid-template-rows: 50px 100px 50% 100px 50px;
+	}
+
+	.main__catering--content{
+		position: absolute;
+		background-color: white;
+		margin: 85px;
+		text-align: center;
+		// width: 260px;
+
+		@include mixins.bp-large{
+			// width: 630px;
+			// right: 20%;
+			position: relative;
+			margin: 0px;
+			grid-column: 2 / 3;
+			grid-row: 3 / 4;
+		}
+
+		@include mixins.bp-medium{
+			// width: 630px;
+			// right: 20%;
+			position: relative;
+			margin: 0px;
+			grid-column: 2 / 3;
+			grid-row: 3 / 4;
+		}
+
+		h1{
+			font-family:'Pacifico', cursive; 
+			font-size: 25px;
+			margin: 40px 50px;
+			color: #497469;
+			transform: skew(-13deg, -13deg);
+		}
+
+		p{
+			font-family:'Noto Sans', sans-serif;
+			color: #497469;
+			font-size: 13px;
+			text-align: center;
+			line-height: 20px;
+			margin: 10px 40px 30px 40px;
+			@include mixins.bp-large{
+				margin: 50px 100px 30px 100px;
+				font-size: 16px;
+			}
+
+			@include mixins.bp-large{
+				margin: 50px 100px 30px 100px;
+			}
+		}
+
+		.learn-more{
+				background-color: white;
+				border: 1px solid #497469;
+				padding: 10px 40px;
+				color: #497469;
+				margin-bottom: 40px;
+				margin-top: 65px;
+				transition: 500ms ease-in-out;
+				@include mixins.bp-large{
+					margin-top: 20px;
+					font-size: 16px;
+				}
+
+				@include mixins.bp-medium{
+					margin-top: 10px;
+					font-size: 16px;
+				}
+		}
+
+		.learn-more:hover{
+			background-color: #497469;
+			color: white;
+		}
+	}
+
+}
+
+footer{
+	background-color: #FFDEE9;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	@include mixins.bp-large{
+		background-color: #FFDEE9;
+		display: grid;
+		grid-template-columns: 10% 80% 10%;
+		grid-template-rows: 50px 100px 50% 100px 50px;
+	}
+	
+
+	
+
+
+	.footer__img{
+		width: 100px;
+		margin-right: 25px;
+		margin-top: 20px;
+		transform: rotate(-90deg);
+		align-self: flex-end;
+		@include mixins.bp-large{
+			position: absolute;
+			margin-top: 40px;
+			right: 230px;
+			margin-right: 0px;
+		}
+	}
+
+	.footer__content{
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		background-color: #ffffff;
+		
+		
+		@include mixins.bp-large{
+			grid-column: 2 / 3;
+			grid-row: 3 / 4;
+			background-color: #ffffff;
+		}
+
+		.footer__content--copy{
+			@include mixins.bp-large{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+			}
+		
+		}
+		
+		h3{
+			font-family:'Pacifico', cursive; 
+			font-size: 25px;
+			margin: 40px 50px;
+			color: #497469;
+			transform: skew(-13deg, -13deg);
+			@include mixins.bp-large{
+				margin-bottom: 10px;
+			}
+		}
+
+		p{
+			font-family:'Noto Sans', sans-serif;
+			color: #497469;
+			font-size: 13px;
+			font-weight: 700;
+			text-align: center;
+			line-height: 20px;
+			margin: 40px 60px 60px 40px ;
+			@include mixins.bp-large{
+				margin-top:20px;
+			}
+			
+		}
+
+		.open-times{
+			order: 3;
+			margin: 0px 140px 100px 140px;
+			@include mixins.bp-large{
+				order: 1;
+				margin: 0px 0px 0px 70px;
+				text-align: left;
+			}
+			li{
+				font-family:'Noto Sans', sans-serif;
+				color: #497469;
+				font-size: 13px;
+				text-align: center;
+				line-height: 20px;
+				font-weight: 700;
+				@include mixins.bp-large{
+					text-align: left;
+				}
+
+			}
+		}
+
+		.address{
+			order: 1;
+			margin:0px 110px 70px 110px;
+			@include mixins.bp-large{
+				order: 1;
+				margin: 0px 0px 70px 00px;
+				text-align: center;
+				padding-left: 100px;
+				padding-right: 100px;
+			}
+		}
+		
+		.contact{
+			order: 4;
+			margin-bottom: 50px;
+			@include mixins.bp-large{
+				order: 1;
+				margin: 0px 70px 0px 0px;
+				text-align: left;
+			}
+			li{
+				font-family:'Noto Sans', sans-serif;
+				color: #497469;
+				font-size: 13px;
+				text-align: center;
+				line-height: 20px;
+				font-weight: 700;
+				@include mixins.bp-large{
+					text-align: right;
+				}
+			}
+		}
+	}
+
+	.copyright{
+		padding-bottom: 50px;
+		color: pink;
+		text-decoration: none;
+		font-family:'Noto Sans', sans-serif;
+		text-align: center;
+		font-size: 13px;
+		margin-top: 50px;
+		@include mixins.bp-large{
+			margin-bottom: 60px;
+			grid-column: 2 / 3;
+			grid-row: 4 / 5;
+		}
+			
+	}
+}
