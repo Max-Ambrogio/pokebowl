@@ -1,2 +1,2 @@
-let nav=document.querySelector(".main__nav"),toggle=document.querySelector(".hamburger"),list=document.querySelector(".main__nav--list"),header=document.querySelector(".main__nav--list"),hamburger=function(){nav.classList.add("show"),list.classList.add("show"),toggle.classList.add("show"),nav.style.display="block";let e=document.createElement("img");e.setAttribute("src","/src/img/Close.png"),e.classList.add("hamburger-close"),nav.append(e)};toggle.addEventListener("click",hamburger);
+
 //# sourceMappingURL=main.js.map

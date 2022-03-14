@@ -27,139 +27,157 @@ background: variables.$primary-color;
 @use 'mixins';
 
 /* 1. Main Layout ================================= */
-// font-family: 'Noto Sans', sans-serif;
+// 
 // font-family: 'Pacifico', cursive;
 * {
 	box-sizing: border-box;
+	
 }
 
 body {
 	background: rgb(255, 255, 255);
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 16px;
 }
 
 /* 2. Content ================================= */
 
 .main__header{
-
 	position: relative;
-	
-	.hamburger{
-		position: absolute;
-		right: 22px;
-		top: 15px;
-		display: flex;
-		flex-direction: column;
-		transform: translate(50% , 0);
-		transition: all 500ms ease-in-out;
-		div{
-			border: 1px solid white;
-			width: 25px ;
-			margin: 3px;
-		}
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	transition: 300ms;
 
-		@include mixins.bp-large{
-			display: none;
-		}
+	@include mixins.bp-large{
+		padding: 10px;
 	}
 
-	.hamburger-close{
-		width: 30px;
-		position: absolute;
-		z-index: 30;
-		top: 0px;
-		right: 10px;
-	}
-
-	.hamburger.show{
-		z-index: 10;
-		right: 1px;
-		transform: translate(0 , 0);
-
-		div{
-			opacity: 0;
-		}
-	}
 
 	.main__header--logo{
 		position: absolute;
 		width: 80px;
 		top: 30px;
-		left: 43%;
+		left: 50%;
+
 		@include mixins.bp-large{
 			position: fixed;
 			top:10px;
 			left:35px ;
 			z-index: 9;
 		}
-
-		@include mixins.bp-medium{
-			left: 47%;
-		}
-	}
-
-	a{
-		font-size: 13px;
-	}
-
-	.show{
-			display: block;
-			position: absolute;
-			background-color: #f4c146;
-			right: 1px;
-			width: 80%;
-			height: 80vh;
-			z-index: 20;
-			top: 0px;
 	}
 
 	.main__nav{
-		display: none;
-		margin-top: 40px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 
-		@include mixins.bp-large{
-			display: block;
-			position: fixed;
-			right: 200px;
-			z-index: 10;
-			margin-top: 15px;
+		input:checked ~ .hamburger {
+			background: transparent;
 		}
 
+		input:checked ~ .hamburger:before {
+			top: 0;
+			transform: rotate(-45deg);
+			width: 30px;
+		}
+
+		input:checked ~ .hamburger:after {
+			top: 0;
+			transform: rotate(45deg);
+			width: 30px;
+		}
+
+		input:checked ~ .main__nav--list{
+			right: 0;
+		}
+
+		.toggle-menu,
+		.hamburger {
+			 display: block; 
+		}
+
+		.toggle-menu {
+			position: absolute;
+			width: 30px;
+			height: 100%;
+			z-index: 3;
+			opacity: 0;
+		}
+
+		.hamburger {
+			position: relative;
+			width: 30px;
+			height: 4px;
+			background: rgb(228, 194, 0);
+			border-radius: 10px;
+			z-index: 6;
+			transition: 300ms;
+			
+			@include mixins.bp-large{
+				display: none;
+			}
+			
+			&:before, &:after {
+			  content: "";
+			  position: absolute;
+			  height: 4px;
+			  right: 0;
+			  background: rgb(228, 194, 0);
+			  border-radius: 10px;
+			}
+			
+			&:before {
+			  top: -10px;
+			  width: 30px;
+			}
+			
+			&:after {
+			  top: 10px;
+			  width: 30px;
+			}
+		}
+		
 		.main__nav--list{
 			display: flex;
-		}
+			justify-content: center;
+			align-items: center;
+			z-index: 1;
+			transition: 500ms;
 
-		.main__nav--list.show{
-			flex-direction: column;
-			padding-right: 80px;
+			@include mixins.bp-small{
+				justify-content: start;
+				flex-direction: column;
+				align-items: center;
+				position: fixed;
+				top: 0;
+				right: -300px;    
+				width: 300px;
+				height: 100vh;
+				padding-top: 65px;
+			}
+
+			li{
+				font-size: 16px;
+				font-family: 'Noto Sans', sans-serif;
+				margin: 5px 50px 20px 50px;
+				text-transform: uppercase;
+			}
 
 			a{
-				color: black;
+				text-decoration: none;
+				color: white
 			}
+
 			a:hover{
 				color: #497469;
 			}
-
-
-			
 		}
 
-		li{
-			font-size: 16px;
-			font-family: 'Noto Sans', sans-serif;
-			margin: 5px 50px 20px 50px;
-			text-transform: uppercase;
-		}
-
-		a{
-			text-decoration: none;
-			color: white
-		}
-
-		a:hover{
-			color: #497469;
-		}
+		
 	}
-
+	
 	.main__header--button{
 		position: absolute;
 		font-family:'Noto Sans', sans-serif;
@@ -175,22 +193,20 @@ body {
 			z-index: 9;
 		}
 	}
-
 	
 }
 
 .main__hero{
-	height: 580px;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	background-image: url(/src/img/header_img.jpg);
 	background-size: cover;
 	background-position: center;
-	position: relative;
 	z-index: -1;
 
 	@include mixins.bp-large{
-		height: 1300px;
+		height: 100vh;
 	}
 
 	h1{
@@ -364,14 +380,13 @@ body {
 }
 
 .main__gallery{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-gap: 1rem;
 
 	img{
 		width: 40%;
-		margin: 20px;
+		
 		@include mixins.bp-large{
 			width: 20%;
 		}
@@ -386,25 +401,35 @@ body {
 	background-position: center;
 	background-size: cover;
 	position: relative;
-
+	@include mixins.bp-medium{
+		display: grid;
+		grid-template-columns: 30% 40% 30%;
+		grid-template-rows: 50px 100px 50% 100px 50px;
+	}
 	@include mixins.bp-large{
 		display: grid;
 		grid-template-columns: 30% 40% 30%;
 		grid-template-rows: 50px 100px 50% 100px 50px;
 	}
 
-	@include mixins.bp-medium{
-		display: grid;
-		grid-template-columns: 30% 40% 30%;
-		grid-template-rows: 50px 100px 50% 100px 50px;
-	}
+	
 
 	.main__catering--content{
 		position: absolute;
 		background-color: white;
 		margin: 85px;
 		text-align: center;
-		// width: 260px;
+		display: grid;
+
+		@include mixins.bp-medium{
+				// width: 630px;
+				// right: 20%;
+
+				position: relative;
+				margin: 0px;
+				grid-column: 2 / 3;
+				grid-row: 3 / 4;
+			}
 
 		@include mixins.bp-large{
 			// width: 630px;
@@ -415,15 +440,7 @@ body {
 			grid-row: 3 / 4;
 		}
 
-		@include mixins.bp-medium{
-			// width: 630px;
-			// right: 20%;
-			position: relative;
-			margin: 0px;
-			grid-column: 2 / 3;
-			grid-row: 3 / 4;
-		}
-
+	
 		h1{
 			font-family:'Pacifico', cursive; 
 			font-size: 25px;
@@ -443,10 +460,6 @@ body {
 				margin: 50px 100px 30px 100px;
 				font-size: 16px;
 			}
-
-			@include mixins.bp-large{
-				margin: 50px 100px 30px 100px;
-			}
 		}
 
 		.learn-more{
@@ -457,15 +470,16 @@ body {
 				margin-bottom: 40px;
 				margin-top: 65px;
 				transition: 500ms ease-in-out;
+				@include mixins.bp-medium{
+					margin-top: 10px;
+					font-size: 16px;
+				}
 				@include mixins.bp-large{
 					margin-top: 20px;
 					font-size: 16px;
 				}
 
-				@include mixins.bp-medium{
-					margin-top: 10px;
-					font-size: 16px;
-				}
+				
 		}
 
 		.learn-more:hover{
